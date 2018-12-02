@@ -72,19 +72,18 @@ public class BubbleSort {
         recursiveSort(array, length -1);
     }
 
-    private static void optimizedSort(int arr[])
+    private static void optimizedSort(int array[])
     {
-        int i, j, temp;
         boolean swapped;
-        int n = arr.length;
-        for (i = 0; i < n - 1; i++)
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++)
         {
             swapped = false;
-            for (j = 0; j < n - i - 1; j++)
+            for (int j = 0; j < n - i - 1; j++)
             {
-                if (arr[j] > arr[j + 1])
+                if (array[j] > array[j + 1])
                 {
-                    swap(arr, j + 1, j);
+                    swap(array, j, j+1);
                     swapped = true;
                 }
             }
@@ -96,11 +95,11 @@ public class BubbleSort {
         }
     }
 
-    private static void swap(int[] array, int from, int to) {
-        if (array[from] != array[to]) {
-            int temp = array[to];
-            array[to] = array[from];
-            array[from] = temp;
+    private static void swap(int[] array, int first, int second) {
+        if (array[first] != array[second]) {
+            int temp = array[second];
+            array[second] = array[first];
+            array[first] = temp;
         }
     }
 
