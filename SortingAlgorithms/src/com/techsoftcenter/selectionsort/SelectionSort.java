@@ -1,5 +1,7 @@
 package com.techsoftcenter.selectionsort;
 
+import com.techsoftcenter.util.SortUtil;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -16,9 +18,9 @@ public class SelectionSort {
     public static void main(String[] args) {
         int[] array = new int[10];
 
-        fillArrayRandom(array, -50, 50);
+        SortUtil.fillArrayRandom(array, -50, 50);
 
-        printArray(array);
+        SortUtil.printArray(array);
 
         System.out.println("Selection sort started...");
         long startTime = System.nanoTime();
@@ -28,7 +30,7 @@ public class SelectionSort {
         System.out.println("Selection sort finished " + time_ns + " ns");
         System.out.println("--------------------------------------------");
 
-        printArray(array);
+        SortUtil.printArray(array);
     }
 
     private static void sort(int[] array){
@@ -43,33 +45,10 @@ public class SelectionSort {
                 }
             }
             if (minist != i ){
-                swap(array, minist, i);
+                SortUtil.swap(array, minist, i);
             }
 //            printArray(array);
         }
     }
 
-
-    private static void swap(int[] array, int first, int second) {
-        if (array[first] != array[second]) {
-            int temp = array[second];
-            array[second] = array[first];
-            array[first] = temp;
-        }
-    }
-
-    private static void fillArrayRandom(int[] arr, int min, int max){
-        for (int i=0; i<arr.length; i++){
-            int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
-            arr[i] = randomNum;
-        }
-    }
-
-    private static void printArray(int[] array){
-        System.out.print("[ ");
-        for (int item: array) {
-            System.out.print(item + "  ");
-        }
-        System.out.println("]");
-    }
 }

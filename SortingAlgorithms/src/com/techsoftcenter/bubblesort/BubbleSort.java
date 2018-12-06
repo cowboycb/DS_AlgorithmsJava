@@ -1,5 +1,7 @@
 package com.techsoftcenter.bubblesort;
 
+import com.techsoftcenter.util.SortUtil;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -15,9 +17,9 @@ public class BubbleSort {
     public static void main(String[] args) {
         int[] array = new int[10];
 
-        fillArrayRandom(array, -50, 50);
+        SortUtil.fillArrayRandom(array, -50, 50);
 
-        printArray(array);
+        SortUtil.printArray(array);
 
         System.out.println("Bubble sort started...");
         long startTime = System.nanoTime();
@@ -27,7 +29,7 @@ public class BubbleSort {
         System.out.println("Bubble sort finished " + time_ns + " ns");
         System.out.println("--------------------------------------------");
 
-        printArray(array);
+        SortUtil.printArray(array);
 
         System.out.println("Improved Bubble sort started...");
         startTime = System.nanoTime();
@@ -36,7 +38,7 @@ public class BubbleSort {
         time_ns = endTime - startTime;
         System.out.println("Improved Bubble sort finished " + time_ns + " ns");
 
-        printArray(array);
+        SortUtil.printArray(array);
 
         System.out.println("Recursive Bubble sort started...");
         startTime = System.nanoTime();
@@ -45,7 +47,7 @@ public class BubbleSort {
         time_ns = endTime - startTime;
         System.out.println("Recursive Bubble sort finished " + time_ns + " ns");
 
-        printArray(array);
+        SortUtil.printArray(array);
     }
 
     private static void sort(int[] array) {
@@ -53,7 +55,7 @@ public class BubbleSort {
             for (int j=0; j<array.length - i - 1; j++){
 //                printArray(array);
                 if (array[j]>array[j+1]) {
-                    swap(array, j, j+1);
+                    SortUtil.swap(array, j, j+1);
                 }
             }
         }
@@ -66,7 +68,7 @@ public class BubbleSort {
 
         for(int i=0; i<length-1; i++){
             if (array[i]>array[i+1]) {
-                swap(array, i, i+1);
+                SortUtil.swap(array, i, i+1);
             }
         }
         recursiveSort(array, length -1);
@@ -83,7 +85,7 @@ public class BubbleSort {
             {
                 if (array[j] > array[j + 1])
                 {
-                    swap(array, j, j+1);
+                    SortUtil.swap(array, j, j+1);
                     swapped = true;
                 }
             }
@@ -94,29 +96,5 @@ public class BubbleSort {
                 break;
         }
     }
-
-    private static void swap(int[] array, int first, int second) {
-        if (array[first] != array[second]) {
-            int temp = array[second];
-            array[second] = array[first];
-            array[first] = temp;
-        }
-    }
-
-    private static void fillArrayRandom(int[] arr, int min, int max){
-        for (int i=0; i<arr.length; i++){
-            int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
-            arr[i] = randomNum;
-        }
-    }
-
-    private static void printArray(int[] array){
-        System.out.print("[ ");
-        for (int item: array) {
-            System.out.print(item + "  ");
-        }
-        System.out.println("]");
-    }
-
 
 }
