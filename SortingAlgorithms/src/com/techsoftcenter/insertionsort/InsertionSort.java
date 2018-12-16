@@ -26,7 +26,9 @@ public class InsertionSort {
             int key = array[i];
             int j=i;
             while(j>0 && key<array[j-1]){
-                SortUtil.swap(array, j, j-1);
+                array[j] = array[j-1];
+//                SortUtil.swap(array, j, j-1);
+//                SortUtil.printArray(array);
                 j--;
             }
             if (i != j) {
