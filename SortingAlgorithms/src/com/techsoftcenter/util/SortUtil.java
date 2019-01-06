@@ -41,4 +41,27 @@ public class SortUtil {
         System.out.println("]");
     }
 
+
+    /**
+     * Inversion Count for an array indicates – how far (or close) the array is from being sorted.
+     * <br/>If array is already sorted then inversion count is 0.
+     * <br/>If array is sorted in reverse order that inversion count is the maximum.
+     * @param arr Integer array
+     * @return int inversionCount
+     */
+    public static int getInversionCount(int[] arr){
+        int invCount = 0;
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i]>arr[j]){
+                    invCount++;
+                }
+            }
+        }
+        return invCount;
+    }
+
+
+
 }

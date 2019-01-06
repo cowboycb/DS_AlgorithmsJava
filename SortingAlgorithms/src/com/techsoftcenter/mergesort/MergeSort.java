@@ -9,7 +9,7 @@ public class MergeSort {
     public static void main(String[] args) {
 
         int[] array = new int[1000];
-        SortUtil.fillArrayRandom(array, -250, 500);
+        SortUtil.fillArrayRandom(array, -750, 1500);
 
         SortUtil.printArray(array);
 
@@ -19,6 +19,16 @@ public class MergeSort {
         long endTime = System.nanoTime();
         long time_ns = endTime - startTime;
         System.out.println("Merge sort finished " + time_ns + " ns");
+        System.out.println("--------------------------------------------");
+        SortUtil.printArray(array);
+
+
+        System.out.println("Improved Merge sort started...");
+        startTime = System.nanoTime();
+        mergeSort(array, 0, array.length);
+        endTime = System.nanoTime();
+        time_ns = endTime - startTime;
+        System.out.println("Improved Merge sort finished " + time_ns + " ns");
         System.out.println("--------------------------------------------");
         SortUtil.printArray(array);
 
@@ -61,7 +71,7 @@ public class MergeSort {
         int l = 0, r = 0;
         int resCounter = 0;
         while(l<left.length && r<right.length){
-            if (left[l]<right[r]){
+            if (left[l]<=right[r]){
                 result[resCounter] = left[l];
                 l++;
             }else{
@@ -80,5 +90,42 @@ public class MergeSort {
         }
 
         return result;
+    }
+
+
+
+
+    public static void mergeSort(int[] input, int start, int end) {
+
+        if (end - start < 2) {
+            return;
+        }
+
+        int mid = (start + end) / 2;
+        mergeSort(input, start, mid);
+        mergeSort(input, mid, end);
+        merge(input, start, mid, end);
+    }
+
+    // { 20, 35, -15, 7, 55, 1, -22 }
+    public static void merge(int[] input, int start, int mid, int end) {
+
+        if (input[mid - 1] <= input[mid]) {
+            return;
+        }
+
+        int i = start;
+        int j = mid;
+        int tempIndex = 0;
+
+        int[] temp = new int[end - start];
+        while (i < mid && j < end) {
+            temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++];
+        }
+
+        System.arraycopy(input, i, input, start + tempIndex, mid - i);
+        System.arraycopy(temp, 0, input, start, tempIndex);
+
+
     }
 }
