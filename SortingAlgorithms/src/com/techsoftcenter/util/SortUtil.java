@@ -1,5 +1,6 @@
 package com.techsoftcenter.util;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -34,6 +35,7 @@ public class SortUtil {
     }
 
     public static void printArray(int[] array){
+//        System.out.println(Arrays.toString(array));
         System.out.print("[ ");
         for (int item: array) {
             System.out.print(item + "  ");
